@@ -39,22 +39,22 @@ pdf_files = glob(f"{pdf_input}*.pdf")
 
 Use the first 3 characters as the 'key'
 ```
-keys = []
+key = []
 for pdf in pdf_files:
-    keys.append(pdf[0:3])
+    key.append(pdf[0:3])
 ```
 Note: set() is used to remove any duplicates in the 'key' list.
 ```
-keys = set(key)
+key = set(key)
 ```
 Loop through the unique keys and merge all PDF files with that key:
 ```
-for key in keys: 
+for keys in key: 
     merger = PdfMerger()
     for pdf in pdf_files:
-        if pdf.startswith(key):
+        if pdf.startswith(keys):
             merger.append(pdf)
-    merger.write(f"{pdf_output}/{key}.pdf")
+    merger.write(f"{pdf_output}/{keys}.pdf")
     merger.close()
 ```
 
